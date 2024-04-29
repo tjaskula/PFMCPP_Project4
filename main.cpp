@@ -106,6 +106,37 @@ good to go!
 
 */
 
+
+struct FloatType
+{
+    float* value;
+    FloatType(float v) : value(new float(v)) {}
+    ~FloatType()
+    {
+        delete value;
+    }
+};
+
+struct DoubleType
+{
+    double* value;
+    DoubleType(double v) : value(new double(v)) {}
+    ~DoubleType()
+    {
+        delete value;
+    }
+};
+
+struct IntType
+{
+    int* value;
+    IntType(int v) : value(new int(v)) {}
+    ~IntType()
+    {
+        delete value;
+    }
+};
+
 #include <iostream>
 
 int main()
@@ -266,5 +297,3 @@ int main()
 
     std::cout << "good to go!" << std::endl;
 }
-
-
