@@ -143,7 +143,7 @@ struct FloatType
 
     FloatType divide(float a)
     {
-        if (a == .0f  || *value == .0f)
+        if (a == .0f)
         {
             std::cout << "warning: floating point division by zero!\n";
         }
@@ -177,7 +177,7 @@ struct DoubleType
 
     DoubleType divide(double a)
     {
-        if (a == .0 || *value == 0.0)
+        if (a == .0)
         {
             std::cout << "warning: floating point division by zero!\n";
         }
@@ -211,7 +211,7 @@ struct IntType
 
     IntType divide(int a)
     {
-        if (a == .0 || value == nullptr)
+        if (a == .0)
         {
             std::cout << "error: integer division by zero is an error and will crash the program!\n";
             return *this;
