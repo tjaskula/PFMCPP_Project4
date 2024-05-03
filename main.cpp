@@ -123,9 +123,9 @@ struct FloatType
     FloatType(float v) : value(new float(v)) {}
 
     FloatType& add(float a);
-    FloatType subtract(float a);
-    FloatType multiply(float a);
-    FloatType divide(float a);
+    FloatType& subtract(float a);
+    FloatType& multiply(float a);
+    FloatType& divide(float a);
     operator float() const;
 
 private:
@@ -138,19 +138,19 @@ FloatType& FloatType::add(float a)
     return *this;
 }
 
-FloatType FloatType::subtract(float a)
+FloatType& FloatType::subtract(float a)
 {
     *value -= a;
     return *this;
 }
 
-FloatType FloatType::multiply(float a)
+FloatType& FloatType::multiply(float a)
 {
     *value *= a;
     return *this;
 }
 
-FloatType FloatType::divide(float a)
+FloatType& FloatType::divide(float a)
 {
     if (a == .0f)
     {
@@ -170,9 +170,9 @@ struct DoubleType
     DoubleType(double v) : value(new double(v)) {}
 
     DoubleType& add(double a);
-    DoubleType subtract(double a);
-    DoubleType multiply(double a);
-    DoubleType divide(double a);
+    DoubleType& subtract(double a);
+    DoubleType& multiply(double a);
+    DoubleType& divide(double a);
     operator double() const;
 
 private:
@@ -185,19 +185,19 @@ DoubleType& DoubleType::add(double a)
     return *this;
 }
 
-DoubleType DoubleType::subtract(double a)
+DoubleType& DoubleType::subtract(double a)
 {
     *value -= a;
     return *this;
 }
 
-DoubleType DoubleType::multiply(double a)
+DoubleType& DoubleType::multiply(double a)
 {
     *value *= a;
     return *this;
 }
 
-DoubleType DoubleType::divide(double a)
+DoubleType& DoubleType::divide(double a)
 {
     if (a == .0)
     {
@@ -217,9 +217,9 @@ struct IntType
     IntType(int v) : value(new int(v)) {}
 
     IntType& add(int a);
-    IntType subtract(int a);
-    IntType multiply(int a);
-    IntType divide(int a);
+    IntType& subtract(int a);
+    IntType& multiply(int a);
+    IntType& divide(int a);
     operator int() const;
 
 private:
@@ -232,19 +232,19 @@ IntType& IntType::add(int a)
     return *this;
 }
 
-IntType IntType::subtract(int a)
+IntType& IntType::subtract(int a)
 {
     *value -= a;
     return *this;
 }
 
-IntType IntType::multiply(int a)
+IntType& IntType::multiply(int a)
 {
     *value *= a;
     return *this;
 }
 
-IntType IntType::divide(int a)
+IntType& IntType::divide(int a)
 {
     if (a == 0)
     {
