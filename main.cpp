@@ -52,6 +52,8 @@ Project 4: Part 4 / 9
  
  You will need to use Forward Declaration and out-of-class definitions to complete this.
  */
+#include <iostream>
+#include <cmath>
 
 struct FloatType;
 struct DoubleType;
@@ -201,13 +203,6 @@ struct HeapA
 
  Wait for my code review.
  */
-
-#include <iostream>
-#include <cmath>
-
-struct FloatType;
-struct DoubleType;
-struct IntType;
 
 // FLOAT DECLARATION
 
