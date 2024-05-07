@@ -220,10 +220,10 @@ struct FloatType
 {
     explicit FloatType(float v);
 
-    FloatType& operator+(float a);
-    FloatType& operator-(float a);
-    FloatType& operator*(float a);
-    FloatType& operator/(float a);
+    FloatType& operator+=(float a);
+    FloatType& operator-=(float a);
+    FloatType& operator*=(float a);
+    FloatType& operator/=(float a);
     operator float() const;
     FloatType& pow(const IntType&);
     FloatType& pow(const FloatType&);
@@ -241,10 +241,10 @@ struct DoubleType
 {
     explicit DoubleType(double v);
 
-    DoubleType& operator+(double a);
-    DoubleType& operator-(double a);
-    DoubleType& operator*(double a);
-    DoubleType& operator/(double a);
+    DoubleType& operator+=(double a);
+    DoubleType& operator-=(double a);
+    DoubleType& operator*=(double a);
+    DoubleType& operator/=(double a);
     operator double() const;
     DoubleType& pow(const IntType&);
     DoubleType& pow(const FloatType&);
@@ -262,10 +262,10 @@ struct IntType
 {
     explicit IntType(int v);
 
-    IntType& operator+(int a);
-    IntType& operator-(int a);
-    IntType& operator*(int a);
-    IntType& operator/(int a);
+    IntType& operator+=(int a);
+    IntType& operator-=(int a);
+    IntType& operator*=(int a);
+    IntType& operator/=(int a);
     operator int() const;
     IntType& pow(const IntType&);
     IntType& pow(const FloatType&);
@@ -281,25 +281,25 @@ private:
 
 FloatType::FloatType(float v) : value(new float(v)) {}
 
-FloatType& FloatType::operator+(float a)
+FloatType& FloatType::operator+=(float a)
 {
     *value += a;
     return *this;
 }
 
-FloatType& FloatType::operator-(float a)
+FloatType& FloatType::operator-=(float a)
 {
     *value -= a;
     return *this;
 }
 
-FloatType& FloatType::operator*(float a)
+FloatType& FloatType::operator*=(float a)
 {
     *value *= a;
     return *this;
 }
 
-FloatType& FloatType::operator/(float a)
+FloatType& FloatType::operator/=(float a)
 {
     if (a == .0f)
     {
@@ -344,25 +344,25 @@ FloatType& FloatType::powInternal(const float exp)
 
 DoubleType::DoubleType(double v) : value(new double(v)) {}
 
-DoubleType& DoubleType::operator+(double a)
+DoubleType& DoubleType::operator+=(double a)
 {
     *value += a;
     return *this;
 }
 
-DoubleType& DoubleType::operator-(double a)
+DoubleType& DoubleType::operator-=(double a)
 {
     *value -= a;
     return *this;
 }
 
-DoubleType& DoubleType::operator*(double a)
+DoubleType& DoubleType::operator*=(double a)
 {
     *value *= a;
     return *this;
 }
 
-DoubleType& DoubleType::operator/(double a)
+DoubleType& DoubleType::operator/=(double a)
 {
     if (a == .0)
     {
@@ -407,25 +407,25 @@ DoubleType& DoubleType::powInternal(const double exp)
 
 IntType::IntType(int v) : value(new int(v)) {}
 
-IntType& IntType::operator+(int a)
+IntType& IntType::operator+=(int a)
 {
     *value += a;
     return *this;
 }
 
-IntType& IntType::operator-(int a)
+IntType& IntType::operator-=(int a)
 {
     *value -= a;
     return *this;
 }
 
-IntType& IntType::operator*(int a)
+IntType& IntType::operator*=(int a)
 {
     *value *= a;
     return *this;
 }
 
-IntType& IntType::operator/(int a)
+IntType& IntType::operator/=(int a)
 {
     if (a == 0)
     {
@@ -511,14 +511,36 @@ void part3()
     IntType it ( 34 );
     DoubleType pi( 3.14 );
 
-    std::cout << "The result of FloatType^4 divided by IntType is: " << ft * ft * ft / static_cast<float>(it) << std::endl;
-    std::cout << "The result of DoubleType times 3 plus IntType is : " << dt * static_cast<double>(3) + static_cast<double>(it) << std::endl;
-    std::cout << "The result of IntType divided by 3.14 multiplied by DoubleType minus FloatType is: " << it / static_cast<int>(pi) * static_cast<int>(dt) - static_cast<int>(ft) << std::endl;
-    std::cout << "An operation followed by attempts to divide by 0, which are ignored and warns user: " << std::endl;
-    std::cout << it * it / 0 / static_cast<int>(0.0f) / static_cast<int>(0.0) << std::endl;
+    ft *= ft;
+    ft *= ft;
+    ft /= static_cast<float>(it);
+    std::cout << "The result of FloatType^4 divided by IntType is: " << ft << std::endl;
 
-    std::cout << "FloatType x IntType  =  " << it * int(ft) << std::endl;
-    std::cout << "(IntType + DoubleType + FloatType) x 24 = " << (it + int(dt) + int(ft)) * int(24) << std::endl;
+    dt *= 3;
+    dt += it;
+    std::cout << "The result of DoubleType times 3 plus IntType is : " << dt << std::endl;
+
+    it /= static_cast<int>(pi);
+    it *= static_cast<int>(dt);
+    it -= static_cast<int>(ft);
+    std::cout << "The result of IntType divided by 3.14 multiplied by DoubleType minus FloatType is: " << it << std::endl;
+
+    std::cout << "An operation followed by attempts to divide by 0, which are ignored and warns user: " << std::endl;
+
+    it *= it;
+    it /= 0;
+    it /= 0.0f;
+    it /= 0.0;
+
+    std::cout << it << std::endl;
+
+    it *= static_cast<int>(ft);
+    std::cout << "FloatType x IntType  =  " << it << std::endl;
+
+    it += static_cast<int>(dt);
+    it += static_cast<int>(ft);
+    it *= 24;
+    std::cout << "(IntType + DoubleType + FloatType) x 24 = " << it << std::endl;
 }
 
 void part4()
